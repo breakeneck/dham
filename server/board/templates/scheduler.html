@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %}Scheduler{% endblock %}
+
+{% block content %}
+    <h1>Scenarios</h1>
+    <div class="card-columns">
+        {% for scenario in scenarios %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ scenario.name }}</h5>
+                    <a href="/unschedule/{{ scenario.id }}" class="btn btn-danger">Stop</a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted response">
+                        <div class="btn-group-vertical btn-group-sm">
+                            {% for action in scenario.scenarioaction_set.all %}
+                                <button type="button" class="btn btn-light action">{{ action.node.name }}: {{ action.action.getName }}</button>
+                            {% endfor %}
+                        </div>
+                    </small>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
