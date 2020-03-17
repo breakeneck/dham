@@ -1,0 +1,1 @@
+echo '' > boot.py && cat http.py >> boot.py && cat first_boot.py >> boot.py && ampy put boot.py && echo '' > boot.py && espconnect
