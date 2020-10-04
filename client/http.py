@@ -9,6 +9,7 @@ class WebServer:
     RESTART_ACTION = 'restart'
     PUT_ACTION = 'put/'
     GET_ACTION = 'get/'
+    LOOP_ACTION = 'loop'
 
     socket = None
     connection = None
@@ -24,6 +25,11 @@ class WebServer:
         while True:
             try:
                 self.handle_request()
+                # Run LOOP action of controller (used for track buttons state)
+                for controller in self.controllers:
+                    if hasattr(controller, self.LOOP_ACTION):
+                        getattr(controller, self.LOOP_ACTION)()
+
             except Exception as e:
                 self.send_json({'error': str(e)})
 
@@ -107,10 +113,12 @@ Content-type: application/json; charset=UTF-8
             self.send_json({'status': 'restarting'})
             sleep(1)
             reset()
+        # Read File
         elif self.route[:4] == self.GET_ACTION:
             print('Content of ', self.route[4:])
             with open(self.route[4:], "r") as f:
                 self.send_json({'content': f.read()})
+        # Write File
         elif self.route[:4] == self.PUT_ACTION:
             print('Writing file %s to machine: ' % self.route[4:])
             with open(self.route[4:], "w") as f:
@@ -129,6 +137,12 @@ Content-type: application/json; charset=UTF-8
 
 
 class Controller:
+    SSRELAY_ON = 1
+    SSRELAY_OFF = 0
+    RELAY_ON = 0
+    RELAY_OFF = 1
+    BTN_ON = 1
+    BTN_OFF = 0
     name: None
 
     def class_name(self):
