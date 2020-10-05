@@ -1,8 +1,9 @@
-echo '' > boot.py
-cat http.py >> boot.py
+cat request.py > boot.py
+tail -n 2 http.py >> boot.py
 cat wifi.py >> boot.py
-echo 'WebServer()' >> boot.py
+cat controller.py >> boot.py
+echo 'WebServer([Firmware()])' >> boot.py
 ampy put wifi.json
 ampy put boot.py
-echo '' > boot.py
+rm boot.py
 espconnect
