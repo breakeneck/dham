@@ -2,18 +2,18 @@ from machine import Pin
 
 
 class esp8266:
-    rx = 3
-    tx = 1
-    d0 = 16  # wake
-    d1 = 5
-    d2 = 4
-    d3 = 0  # flash
-    d4 = 2
-    d5 = 14
-    d6 = 12
-    d7 = 13
-    d8 = 15
-    a0 = 0
+	rx = 3
+	tx = 1
+	d0 = 16  # wake
+	d1 = 5
+	d2 = 4
+	d3 = 0  # flash
+	d4 = 2
+	d5 = 14
+	d6 = 12
+	d7 = 13
+	d8 = 15
+	a0 = 0
 
 
 # SCK	PA_01，PA_11，PB_16，PB_27
@@ -28,18 +28,18 @@ class esp8266:
 # CH 3	PA_03，PA_09，PB_02，PB_06，PB_15，PB_22
 # CH 4	PA_04，PA_10，PB_01，PB_08，PB_14，PB_23
 class w600:
-    a0 = Pin.PA_00
-    a1 = Pin.PA_01
-    b6 = Pin.PB_06
-    b7 = Pin.PB_07
-    b8 = Pin.PB_08
-    b9 = Pin.PB_09
-    b10 = Pin.PB_10
-    b11 = Pin.PB_11
-    b12 = Pin.PB_12
-    b13 = Pin.PB_13
-    b14 = Pin.PB_14
-    b15 = Pin.PB_15
-    b16 = Pin.PB_16
-    b17 = Pin.PB_17
-    b18 = Pin.PB_18
+	a0 = Pin.PA_00
+	a1 = Pin.PA_01
+	b6 = Pin.PB_06
+	b7 = Pin.PB_07
+	b8 = Pin.PB_08
+	b9 = Pin.PB_09
+	b10 = Pin.PB_10
+	b11 = Pin.PB_11
+	b12 = Pin.PB_12
+	b13 = Pin.PB_13
+	b14 = Pin.PB_14
+	b15 = Pin.PB_15
+	b16 = Pin.PB_16
+	b17 = Pin.PB_17
+	b18 = Pin.PB_18
