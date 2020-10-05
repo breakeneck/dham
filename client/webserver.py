@@ -11,6 +11,7 @@ class WebServer:
 	data = ""
 
 	def __init__(self, controllers=None):
+		print('Web Server started')
 		self.request = Request()
 		self.controllers = controllers or []
 
