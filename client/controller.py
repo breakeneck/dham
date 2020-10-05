@@ -12,19 +12,19 @@ class Controller:
 
 class Firmware(Controller):
 	@staticmethod
-	def restart(self, request):
+	def restart(request):
 		request.send({'status': 'restarting'})
 		sleep(1)
 		reset()
 
 	@staticmethod
-	def read(self, request, filename):
+	def read(request, filename):
 		print('Content of ', filename)
 		with open(filename, "r") as f:
 			request.send({'content': f.read()})
 
 	@staticmethod
-	def write(self, request, filename):
+	def write(request, filename):
 		print('Writing file %s to machine: ' % filename)
 		with open(filename, "w") as f:
 			f.write(request.rawBody)
@@ -40,17 +40,17 @@ class Relay(Controller):
 		self.relay = Pin(relay_pin, Pin.OUT)
 		self.relay.value(default_state)
 
-	def index(self, data):
+	def index(self, request):
 		value = self.relay.value()
-		return {'current state': 'off' if value == self.RELAY_OFF else 'on'}
+		request.send({'current state': 'off' if value == self.RELAY_OFF else 'on'})
 
-	def on(self, data):
+	def on(self, request):
 		self.relay.value(self.RELAY_ON)
-		return {'new state': 'on'}
+		request.send({'new state': 'on'})
 
-	def off(self, data):
+	def off(self, request):
 		self.relay.value(self.RELAY_OFF)
-		return {'new state': 'off'}
+		request.send({'new state': 'off'})
 
 
 class InverseRelay(Relay):
