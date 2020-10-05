@@ -23,6 +23,7 @@ class Upload:
     def single(self, nodeName, filename, asFilename=None):
         with open(filename) as file:
             url = 'http://%s/firmware/put/%s' % (self.NODES[nodeName], filename if not asFilename else asFilename)
+            print(url)
             requests.post(url, data=file.read())
 
 
@@ -34,7 +35,7 @@ class Upload:
         for file in self.USER_FILES:
             self.single(nodeName, self.NODES_DIR + nodeName + '/' + file, file)
 
-    def firmware(self, nodeName):
+    def all(self, nodeName):
         self.shared(nodeName)
         self.user(nodeName)
 
@@ -43,8 +44,8 @@ class Upload:
 
     def run(self, argv):
         action, node = argv[1], argv[2]
-        getattr(self, action)(*argv[3:])
-
+        print(action, node,*argv[3:])
+        getattr(self, action)(node, *argv[3:])
 
 
 upload = Upload()

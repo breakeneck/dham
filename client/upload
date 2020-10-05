@@ -1,0 +1,10 @@
+sudo ampy put nodes/$1/main.py main.py
+sudo ampy put nodes/$1/wifi.json wifi.json
+sudo ampy put boot.py
+sudo ampy put board.py
+sudo ampy put controller.py
+sudo ampy put request.py
+sudo ampy put webserver.py
+sudo ampy put wifi.py
+
+sudo espconnect

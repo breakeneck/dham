@@ -11,23 +11,13 @@ class Request:
 		self.socket.bind(getaddrinfo('0.0.0.0', 80)[0][-1])
 		self.socket.listen(1)
 		self.socket.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+		print("\nServer is listening at %s:\n")
 		# Request params
 		self.route = ''
 		self.rawBody = '{}'
 		self.controllerName = ''
 		self.actionName = ''
 		self.params = ()
-
-	@staticmethod
-	def listen_socket(self):
-		# Listen socket
-		sock = socket()
-		sock.bind(getaddrinfo('0.0.0.0', 80)[0][-1])
-		sock.listen(1)
-		sock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
-
-		print("\nServer is listening at %s:\n")  # % addr)
-		return sock
 
 	def get_raw_request(self):
 		data = ''

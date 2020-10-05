@@ -1,4 +1,4 @@
-from dht import DHT22
+#from dht import DHT22
 from machine import Pin, reset
 from time import sleep
 
