@@ -46,6 +46,7 @@ class WebServer:
 
 	def handle_request(self):
 		self.request.receive()
+
 		self.get_action()(self.request, *self.request.params)
 
 

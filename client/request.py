@@ -23,7 +23,7 @@ class Request:
 		data = ''
 		while True:
 			part = self.connection.recv(self.BUFF_SIZE)
-			# print('part', len(part), '/', len(data), 'of', len(data))
+			print('part', len(part), '/', len(data), 'of', len(data))
 			data += part.decode('utf-8')
 			if len(part) < self.BUFF_SIZE:
 				break
@@ -38,6 +38,7 @@ class Request:
 		self.parseBody(r[r.index('\r\n\r\n') + 4:])
 
 	def parseRoute(self, route):
+		print('rawRoute', route)
 		if route('/') == 0:
 			self.route = route + '/index/'
 		elif route.count('/') == 1:
