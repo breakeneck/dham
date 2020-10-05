@@ -3,7 +3,7 @@ from ujson import load
 
 
 def connect():
-	with open('nodes/altarna/wifi.json', 'rt') as f:
+	with open('nodes/altar/wifi.json', 'rt') as f:
 		config = load(f)
 	wlan = WLAN(STA_IF)
 	wlan.active(True)

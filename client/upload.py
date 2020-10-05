@@ -5,6 +5,17 @@ import requests
 class Upload:
     NODES_DIR = 'nodes/'
     RESTART_ROUTE = 'firmware/restart'
+    SHARED_FILES = [
+        'board.py',
+        'controller.py',
+        'http.py',
+        'request.py',
+        'wifi.py',
+    ]
+    USER_FILES = [
+        'main.py',
+        'wifi.json'
+    ]
     NODES = {
         'altar': '192.168.88.102'
     }
@@ -16,23 +27,12 @@ class Upload:
 
 
     def shared(self, nodeName):
-        files = [
-            'board.py',
-            'controller.py',
-            'http.py',
-            'request.py',
-            'wifi.py',
-        ]
-        for file in files:
+        for file in self.SHARED_FILES:
             self.single(nodeName, file)
 
     def user(self, nodeName):
-        files = [
-            '%s/%s/main.py' % (self.NODES_DIR, nodeName),
-            '%s/%s/wifi.json' % (self.NODES_DIR, nodeName)
-        ]
-        for file in files:
-            self.single(nodeName, file)
+        for file in self.USER_FILES:
+            self.single(nodeName, self.NODES_DIR + nodeName + '/' + file, file)
 
     def firmware(self, nodeName):
         self.shared(nodeName)
