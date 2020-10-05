@@ -98,7 +98,7 @@ Content-type: application/json; charset=UTF-8
             print('Controller Not Found')
             return None
         if not hasattr(controller, action_name):
-            print('Action index Not Found')
+            print('Action %s Not Found' % action_name)
             return None
 
         return getattr(controller, action_name)
@@ -114,21 +114,23 @@ Content-type: application/json; charset=UTF-8
             sleep(1)
             reset()
         # Read File
-        elif self.route[:4] == self.GET_ACTION:
-            print('Content of ', self.route[4:])
-            with open(self.route[4:], "r") as f:
+        elif self.route[:len(self.GET_ACTION)] == self.GET_ACTION:
+            filename = self.route[len(self.GET_ACTION):]
+            print('Content of ', filename)
+            with open(filename, "r") as f:
                 self.send_json({'content': f.read()})
         # Write File
-        elif self.route[:4] == self.PUT_ACTION:
-            print('Writing file %s to machine: ' % self.route[4:])
-            with open(self.route[4:], "w") as f:
+        elif self.route[:len(self.PUT_ACTION)] == self.PUT_ACTION:
+            filename = self.route[len(self.PUT_ACTION):]
+            print('Writing file %s to machine: ' % filename)
+            with open(filename, "w") as f:
                 f.write(data)
-            self.send_json({'updated file': self.route[4:]})
+            self.send_json({'updated file': filename})
         # Run controller
         else:
             action = self.get_action()
             if not action:
-                self.send_json({'error': 'Route ' + self.route + ' not found'})
+                self.send_json({'error': 'Route %s not found' % self.route})
             else:
                 request = loads(data)
                 response = action(request)
@@ -143,7 +145,8 @@ class Controller:
     RELAY_OFF = 1
     BTN_ON = 1
     BTN_OFF = 0
-    name: None
+    name = ''
 
     def class_name(self):
         return self.name if self.name else self.__class__.__name__
+

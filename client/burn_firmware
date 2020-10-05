@@ -1,0 +1,9 @@
+cat wifi.py
+cat board.py
+cat http.py
+cat controller.py
+cd nodes/$1
+cat wifi.json
+cat main.py
+cd ../..
+#espconnect

@@ -22,9 +22,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DHAM_SECRET_KEY', 'unsafe-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get('DHAM_DEBUG', True) == 'False')
+DEBUG = False
+#bool(os.environ.get('DHAM_DEBUG', True) == 'False')
 
-ALLOWED_HOSTS = os.environ.get('DHAM_ALLOWED_HOSTS', '').split()
+ALLOWED_HOSTS = '192.168.88.239'
+#os.environ.get('DHAM_ALLOWED_HOSTS', '').split()
 
 # Application definition
 

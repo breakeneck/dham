@@ -1,1 +1,8 @@
-echo '' > boot.py && cat http.py >> boot.py && cat first_boot.py >> boot.py && ampy put boot.py && echo '' > boot.py && espconnect
+echo '' > boot.py
+cat http.py >> boot.py
+cat wifi.py >> boot.py
+echo 'WebServer()' >> boot.py
+ampy put wifi.json
+ampy put boot.py
+echo '' > boot.py
+espconnect

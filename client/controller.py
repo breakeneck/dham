@@ -2,6 +2,9 @@ from http import Controller
 from dht import DHT22
 from machine import Pin
 
+# class Firmware(Controller):
+
+
 
 class Relay(Controller):
     def __init__(self, name, relay_pin, default_state=Controller.RELAY_OFF):
